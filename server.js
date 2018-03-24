@@ -3,6 +3,7 @@ const express = require('express');
 let app = express();
 let locale = "en-us";
 
+
 // if it's the main page
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
@@ -34,6 +35,7 @@ function unixFromNat(date) {
     return (unix / 1000);
 }
 function handlePar(param) {
+    // crear unos regex que funcionen
     let unixRegex = /\D/;
     let unix = null;
     let nat = null;
@@ -55,7 +57,7 @@ function handlePar(param) {
     return printResult(unix, nat);
 }
 
-// listen for requests
+// listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log(`Your app is listening on port ${listener.address().port}`)
 })
