@@ -4,6 +4,7 @@ const index = 'index.html';
 let app = express();
 let locale = "en-us";
 
+
 // if it's the main page
 app.get('/', (req, res) => {
     res.sendFile(index, { root: 'public' });
@@ -11,48 +12,50 @@ app.get('/', (req, res) => {
 
 // if there is something after /
 app.get('/:date', (req, res) => {
-    //res.sendFile(index, {
-    //    root: 'public'
-    //});
-    let par = req.params.date;
-    res.end(handlePar(par));
+    let par = req.params.date; 
+    let result = handlePar(par);
+    // returns JSON object, easy!
+    res.json(result);
 });
 
+// create the object with the data
 function printResult(v1, v2) {
-    let obj = {
-        "unix": v1,
-        "natural": v2
-    }
-    let json = JSON.stringify(obj);
-    // return document.querySelector('body').innerHTML = json; arreglar
-    return console.log(json);
+    let obj = { unix: v1, natural: v2 }
+    return obj;
 }
-function datesFromUnix(d) {
-    console.log('it is a number!');
-    let unix = new Date(Number(d) * 1000); // multiply by 1000 to get ms from input in secs
+function natFromUnix(date) {
+    let unix = new Date(date * 1000); // multiply by 1000 to get ms from input in secs
     let month = unix.toLocaleString(locale, {month: 'long'});
     let natural = month + ' ' + unix.getDate() + ', ' + unix.getFullYear();
-    printResult(d, natural);
+    return natural;
 }
-function datesFromNat(d) {
-    console.log('it is a text!');
+function unixFromNat(date) {
     // crear las fechas
-    let unix = '';
-    let natural = d;
-    printResult(unix, natural);
+    let dateObj = new Date(date);
+    let unix = dateObj.getTime();
+    return (unix / 1000);
 }
-function handlePar(p) {
+function handlePar(param) {
     // crear unos regex que funcionen
-    let unixRegex = /\d/;
-    let natRegex = /[a-z]/;
+    let unixRegex = /\D/;
+    let unix = null;
+    let nat = null;
 
-    if (unixRegex.test(p)) {
-        datesFromUnix(p);
-    } else if (natRegex.test(p)) {
-        datesFromNat(p);
+    if (!unixRegex.test(param)) {
+        console.log('it is a number value');
+        unix = Number(param);
+        nat = natFromUnix(param);
     } else {
-        printResult(null, null);
+        console.log('it is a text value...');
+        let temp = unixFromNat(param);
+        if (!unixRegex.test(temp)) {
+            console.log('and it is valid');
+            unix = temp;
+            nat = param;
+        }
     }
+
+    return printResult(unix, nat);
 }
 
 // Start the server

@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>freeCodeCamp Timestamp Service</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <h1>freeCodeCamp Timestamp Microservice</h1>
-    <p>To try it, just add one of these to the url:</p>
-    <ul>
-        <li>1450137600</li>
-        <li>December 15, 2015</li>
-    </ul>
+    <main class="container my-5 width-">
+        <h1 class="display-4 mb-4 text-success">freeCodeCamp Timestamp Microservice</h1>
+        <p class="lead">You can pass a string as a parameter, and it will check if the string is either a unix timestamp or a natural language date (example: July 31, 1990).</p>
+        <ul>
+            <li>If it is one of both, the app returns both the Unix timestamp and the natural language form of that date.</li>
+            <li>If it isn't, it will return "null" for both properties.</li>
+        </ul>
+        <h2 class="mt-4 mb-3 text-success">Try it!</h2>
+        <p>If you want to try it, just add one of these after the page url:</p>
+        <ul>
+            <li>649364400</li>
+            <li>July 31, 1990</li>
+        </ul>
+    </main>
 </body>
 </html>
