@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>freeCodeCamp Timestamp Service</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <main>
+      <h1>freeCodeCamp Timestamp Microservice</h1>
+      <p>
+        You can pass a string as a parameter to <code>/api/timestamp/</code>,
+        and it will check if it's either a unix timestamp or a valid date string
+        (examples: 1990-07-31, July 31, 1990).
+      </p>
+      <ul>
+        <li>
+          If it is either, the app returns both the Unix timestamp and the UTC
+          form of that date.
+        </li>
+        <li>
+          If it is not valid, it will return
+          <code>{ error : "Invalid Date" }</code>.
+        </li>
+        <li>If it's empty, it return the current date in both formats.</li>
+      </ul>
+      <h2>Try it!</h2>
+      <p>Visit one of these urls:</p>
+      <ul>
+        <li>
+          <a href="/api/timestamp/649382400000" target="_blank"
+            >/api/timestamp/649382400000</a
+          >
+        </li>
+        <li>
+          <a href="/api/timestamp/July 31, 1990" target="_blank"
+            >/api/timestamp/July 31, 1990</a
+          >
+        </li>
+      </ul>
+      <p>
+        This is the
+        <a href="https://github.com/rubenvar/fcc-timestamp" target="_blank"
+          >GitHub repo</a
+        >.
+      </p>
+    </main>
+    <footer>By <a href="https://rubenvara.io" target="_blank">Rubén</a></footer>
+  </body>
+</html>
